@@ -1,0 +1,30 @@
+@keyframes raptorGO {
+  25%  {
+    transform: translateY(0);
+  }
+  35%  {
+    right: 0;
+    transform: translateY(25%);
+  }
+  75%  {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    right: 100%;
+    transform: translateY(25%);
+  }
+}
+
+.raptor {
+  display: none;
+  bottom: 0;
+  position: fixed;
+  transform: translateY(100%);
+  right: 0;
+  height: 40%
+}
+
+.raptor-go {
+  animation: raptorGO 2500ms;
+}
