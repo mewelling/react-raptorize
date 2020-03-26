@@ -14,7 +14,6 @@ const defaults = {
   repeat: true,
   code: false,
   disabled: false,
-  fools: false,     // TODO can i name this better?
 };
 
 const init = (options) => {
@@ -56,11 +55,6 @@ const init = (options) => {
   return { go: go }
 }
 
-const isAprilFoolsDay = () => {
-  const now = new Date();
-  return now.getMonth() === 3 && now.getDate() === 1;
-}
-
 const Raptorize = (props) => {
   const [index, setIndex] = useState(0);
 
@@ -68,11 +62,8 @@ const Raptorize = (props) => {
   options.className = 'raptor';
   options.uniqid = Date.now();
 
-  // If options.april, we only want this to be triggered on april 1st (local time);
-  const disabled = options.disabled || (options.fools && !isAprilFoolsDay());
-
   useEffect(() => {
-    if (disabled) return;
+    if (options.disabled) return;
 
     const validateKonami = ({ keyCode }) => {
       if (keyCode === 65 && index > 8 && options.repeat) setIndex(index + 1);
@@ -82,7 +73,7 @@ const Raptorize = (props) => {
 
     document.addEventListener("keydown", validateKonami);
     return () => document.removeEventListener("keydown", validateKonami);
-  }, [disabled, options.repeat, index]);
+  }, [options.disabled, options.repeat, index]);
 
   // Magic Time 🦕🦖
   if (index >= konamiCode.length) init(options).go();
