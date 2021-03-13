@@ -1,8 +1,6 @@
-# TSDX React w/ Storybook User Guide
+# react-raptorize 🦖
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
-
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+This component is totally invisible until a user triggers the [Konami Code](https://en.wikipedia.org/wiki/Konami_Code)... at which point they will see (and hear) a raptor run across their screen!
 
 > If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
 

@@ -1,19 +1,16 @@
-import React, {
-  useState,
-  useEffect,
-  FC,
-  HTMLAttributes,
-  ReactChild,
-} from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-import './styles/raptorize.css';
 import raptor from './assets/images/raptor.png';
 import sound1 from './assets/sounds/raptor.mp3';
 import sound2 from './assets/sounds/raptor.ogg';  // backup
 
-export interface Props extends HTMLAttributes<HTMLDivElement> {
-  /** custom content, defaults to 'the snozzberries taste like snozzberries' */
-  children?: ReactChild;
+export interface RaptorizeProps {
+  soundDelay: number;
+  sound: boolean;
+  repeat: boolean;
+  code: boolean;
+  disabled: boolean;
 }
 
 const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
@@ -28,12 +25,45 @@ const defaults = {
   disabled: false,
 };
 
+const RaptorWrapper = styled.div`
+  @keyframes raptorGO {
+    25% {
+      transform: translateY(0);
+    }
+    35% {
+      right: 0;
+      transform: translateY(25%);
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      right: 100%;
+      transform: translateY(25%);
+    }
+  }
+
+  .raptor {
+    display: none;
+    bottom: 0;
+    position: fixed;
+    transform: translateY(100%);
+    right: 0;
+    height: 40%;
+  }
+
+  .raptor-go {
+    animation: raptorGO 2500ms;
+  }
+`;
+
 // Please do not use types off of a default export module or else Storybook Docs will suffer.
 // see: https://github.com/storybookjs/storybook/issues/9556
 /**
  * A custom Thing component. Neat!
  */
-export const Raptorize: FC<Props> = props => {
+const Raptorize = (props: RaptorizeProps) => {
   const [index, setIndex] = useState(0);
 
   const init = (options: any) => {
@@ -101,5 +131,11 @@ export const Raptorize: FC<Props> = props => {
   // Magic Time 🦕🦖
   if (index >= konamiCode.length) init(options).go();
 
-  return <>{options.code && <div>↑ ↑ ↓ ↓ ← → ← → B A</div>}</>;
+  return (
+    <RaptorWrapper>
+      {options.code && <div>↑ ↑ ↓ ↓ ← → ← → B A</div>}
+    </RaptorWrapper>
+  );
 };
+
+export default Raptorize;

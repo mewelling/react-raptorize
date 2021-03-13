@@ -1,9 +1,13 @@
-import { FC, HTMLAttributes, ReactChild } from 'react';
-export interface Props extends HTMLAttributes<HTMLDivElement> {
-    /** custom content, defaults to 'the snozzberries taste like snozzberries' */
-    children?: ReactChild;
+/// <reference types="react" />
+export interface RaptorizeProps {
+    soundDelay: number;
+    sound: boolean;
+    repeat: boolean;
+    code: boolean;
+    disabled: boolean;
 }
 /**
  * A custom Thing component. Neat!
  */
-export declare const Thing: FC<Props>;
+declare const Raptorize: (props: RaptorizeProps) => JSX.Element;
+export default Raptorize;
