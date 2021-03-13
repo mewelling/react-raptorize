@@ -36,7 +36,7 @@ const defaults = {
 export const Raptorize: FC<Props> = props => {
   const [index, setIndex] = useState(0);
 
-  const init = options => {
+  const init = (options: any) => {
     const audioTemplate = document.createElement('audio');
     audioTemplate.className =
       options.className + '-source asset-' + options.uniqid;
@@ -70,7 +70,7 @@ export const Raptorize: FC<Props> = props => {
           'asset-' + options.uniqid
         );
         while (assets[0]) {
-          assets[0].parentNode.removeChild(assets[0]);
+          assets[0]?.parentNode?.removeChild(assets[0]);
         }
       }, 5000);
     }
@@ -78,14 +78,17 @@ export const Raptorize: FC<Props> = props => {
     return { go: go };
   };
 
-  const options = { ...defaults, ...props };
-  options.className = 'raptor';
-  options.uniqid = Date.now();
+  const options = {
+    ...defaults,
+    ...props,
+    className: 'raptor',
+    uniqid: Date.now(),
+  };
 
   useEffect(() => {
     if (options.disabled) return;
 
-    const validateKonami = ({ keyCode }) => {
+    const validateKonami = ({ keyCode }: { keyCode: number }) => {
       if (keyCode === 65 && index > 8 && options.repeat) setIndex(index + 1);
       else if (keyCode === konamiCode[index]) setIndex(index + 1);
       else setIndex(0);
