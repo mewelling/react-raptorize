@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 import raptor from './assets/images/raptor.png';
 import sound1 from './assets/sounds/raptor.mp3';
-import sound2 from './assets/sounds/raptor.ogg';  // backup
+import sound2 from './assets/sounds/raptor.ogg'; // backup
 
 export interface RaptorizeProps {
   soundDelay: number;
@@ -22,10 +22,10 @@ const defaults = {
   sound: true,
   repeat: true,
   code: false,
-  disabled: false,
+  disabled: false
 };
 
-const RaptorWrapper = styled.div`
+const GlobalStyle = createGlobalStyle`
   @keyframes raptorGO {
     25% {
       transform: translateY(0);
@@ -65,6 +65,13 @@ const RaptorWrapper = styled.div`
  */
 const Raptorize = (props: RaptorizeProps) => {
   const [index, setIndex] = useState(0);
+
+  const options = {
+    ...defaults,
+    ...props,
+    className: 'raptor',
+    uniqid: Date.now()
+  };
 
   const init = (options: any) => {
     const audioTemplate = document.createElement('audio');
@@ -108,13 +115,6 @@ const Raptorize = (props: RaptorizeProps) => {
     return { go: go };
   };
 
-  const options = {
-    ...defaults,
-    ...props,
-    className: 'raptor',
-    uniqid: Date.now(),
-  };
-
   useEffect(() => {
     if (options.disabled) return;
 
@@ -132,9 +132,10 @@ const Raptorize = (props: RaptorizeProps) => {
   if (index >= konamiCode.length) init(options).go();
 
   return (
-    <RaptorWrapper>
+    <>
+      <GlobalStyle />
       {options.code && <div>↑ ↑ ↓ ↓ ← → ← → B A</div>}
-    </RaptorWrapper>
+    </>
   );
 };
 

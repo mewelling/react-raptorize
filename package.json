@@ -1,4 +1,7 @@
 {
+  "name": "react-raptorize",
+  "author": "Michael Welling",
+  "module": "dist/react-raptorize-1.esm.js",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -30,14 +33,11 @@
     }
   },
   "prettier": {
-    "printWidth": 80,
-    "semi": true,
+    "arrowParens": "always",
     "singleQuote": true,
-    "trailingComma": "es5"
+    "tabWidth": 2,
+    "trailingComma": "none"
   },
-  "name": "react-raptorize-1",
-  "author": "Kyle Peeler",
-  "module": "dist/react-raptorize-1.esm.js",
   "size-limit": [
     {
       "path": "dist/react-raptorize-1.cjs.production.min.js",
@@ -69,9 +69,7 @@
     "size-limit": "^4.10.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.1.0",
-    "typescript": "^4.2.3"
-  },
-  "dependencies": {
+    "typescript": "^4.2.3",
     "styled-components": "^5.2.1"
   }
 }
