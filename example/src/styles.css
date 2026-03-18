@@ -1,0 +1,155 @@
+/* Global layout */
+:root {
+  --text: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.55);
+  --glass: rgba(12, 20, 10, 0.28);
+  --glassBorder: rgba(255, 255, 255, 0.16);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  overflow: hidden;
+}
+
+/* Page background + content centering */
+.page {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 6vw, 56px);
+  isolation: isolate;
+}
+
+.page__backdrop {
+  position: absolute;
+  inset: -30vmax;
+  z-index: -1;
+
+  /* “Prehistoric” palette: moss + clay + sunlit yellow */
+  background:
+    radial-gradient(
+      900px 700px at 20% 18%,
+      rgba(255, 220, 125, 0.32),
+      rgba(255, 220, 125, 0) 60%
+    ),
+    radial-gradient(
+      900px 700px at 78% 34%,
+      rgba(38, 110, 70, 0.55),
+      rgba(38, 110, 70, 0) 62%
+    ),
+    radial-gradient(
+      1000px 800px at 48% 80%,
+      rgba(92, 58, 28, 0.62),
+      rgba(92, 58, 28, 0) 60%
+    ),
+    radial-gradient(
+      1100px 900px at 10% 85%,
+      rgba(140, 176, 70, 0.40),
+      rgba(140, 176, 70, 0) 58%
+    ),
+    linear-gradient(145deg, #1a3b25 0%, #2d2913 40%, #563a1b 100%);
+
+  filter: saturate(1.08) contrast(1.02);
+  animation: prehistoricDrift 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.page__backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      1px 1px at 20% 30%,
+      rgba(0, 0, 0, 0.18),
+      rgba(0, 0, 0, 0) 55%
+    ),
+    radial-gradient(
+      1px 1px at 70% 10%,
+      rgba(0, 0, 0, 0.14),
+      rgba(0, 0, 0, 0) 55%
+    ),
+    radial-gradient(
+      1px 1px at 35% 75%,
+      rgba(0, 0, 0, 0.16),
+      rgba(0, 0, 0, 0) 55%
+    );
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+  transform: scale(1.6);
+}
+
+@keyframes prehistoricDrift {
+  0% {
+    transform: translate3d(-1.6%, -1.2%, 0) rotate(-0.3deg) scale(1.04);
+  }
+  100% {
+    transform: translate3d(1.6%, 1.2%, 0) rotate(0.35deg) scale(1.06);
+  }
+}
+
+.page__content {
+  width: min(860px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 2.6vw, 28px);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  font-size: clamp(44px, 7vw, 86px);
+  line-height: 0.95;
+  text-shadow:
+    0 14px 40px var(--shadow),
+    0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.raptorizeWrap {
+  width: min(760px, 100%);
+}
+
+.raptorizeWrap__inner {
+  padding: clamp(18px, 3vw, 28px) clamp(16px, 3vw, 30px);
+  border-radius: 22px;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.04)
+    ),
+    var(--glass);
+  border: 1px solid var(--glassBorder);
+  box-shadow:
+    0 26px 80px rgba(0, 0, 0, 0.40),
+    0 8px 26px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+/* Raptorize output: it renders the Konami string in a plain div */
+.raptorizeWrap__inner > div {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: clamp(22px, 3.6vw, 40px);
+  line-height: 1.25;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page__backdrop {
+    animation: none;
+  }
+}
+

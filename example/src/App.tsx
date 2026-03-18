@@ -1,10 +1,21 @@
 import Raptorize from 'react-raptorize';
 
 function App() {
-  return <div style={{ backgroundColor: 'black', color: 'white', height: '100vh', width: '100vw' }}>
-    <h1>react-raptorize example</h1>
-    <Raptorize code={true} disabled={false} sound={false} />
+  return (
+    <div className="page">
+      <div className="page__backdrop" aria-hidden="true" />
+
+      <main className="page__content">
+        <h1 className="title">react-raptorize</h1>
+
+        <section className="raptorizeWrap" aria-label="Konami code display">
+          <div className="raptorizeWrap__inner">
+            <Raptorize code={true} disabled={false} sound={true} />
+          </div>
+        </section>
+      </main>
     </div>
+  )
 }
 
 export default App
