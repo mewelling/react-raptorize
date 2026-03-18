@@ -17,6 +17,7 @@ const defaults = {
 };
 
 const init = (options) => {
+  console.log('init', options);
   const audioTemplate = document.createElement('audio');
   audioTemplate.className = options.className + '-source asset-' + options.uniqid;
 
@@ -35,6 +36,7 @@ const init = (options) => {
   image.style.display = 'none';
 
   function go() {
+    console.log('go', options);
     if (options.sound) {
       setTimeout(() => audio.play(), options.soundDelay);
     }
@@ -62,8 +64,12 @@ const Raptorize = (props) => {
   options.className = 'raptor';
   options.uniqid = Date.now();
 
+  console.log('Raptorize', options);
+
   useEffect(() => {
     if (options.disabled) return;
+
+    console.log('useEffect', options);
 
     const validateKonami = ({ keyCode }) => {
       if (keyCode === 65 && index > 8 && options.repeat) setIndex(index + 1);
