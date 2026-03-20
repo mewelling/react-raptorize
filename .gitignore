@@ -1,1 +1,5 @@
 node_modules
+
+example/tsconfig.tsbuildinfo
+example/node_modules
+example/dist

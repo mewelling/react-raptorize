@@ -11,6 +11,14 @@ npm install react-raptorize --save
 
 ### Demo
 
+See the raptor in action in the demo app here!
+
+```sh
+cd /example
+npm install
+npm run dev
+```
+
 ### Usage
 
 ```javascript
