@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import './styles/raptorize.css';
+import React, { useEffect, useState } from 'react';
+import { ensureRaptorStyles } from './injectRaptorStyles';
 import raptor from './assets/images/raptor.png';
 import sound1 from './assets/sounds/raptor.mp3';
 import sound2 from './assets/sounds/raptor.ogg';  // backup
@@ -57,6 +57,11 @@ const init = (options) => {
 
 const Raptorize = (props) => {
   const [index, setIndex] = useState(0);
+
+  /**
+   * Rather than requiring a separate css stylesheet, use JS to inject the styles directly.
+   */
+  ensureRaptorStyles();
 
   const options = { ...defaults, ...props };
   options.className = 'raptor';
