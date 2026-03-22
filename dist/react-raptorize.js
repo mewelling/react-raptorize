@@ -36,8 +36,9 @@ const Y = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAJYCAMAAAB7MkC6AAA
   }
   return { go: V };
 }, e = (A) => {
+  const [Q, B] = S(0);
   h();
-  const [Q, B] = S(0), q = { ...i, ...A };
+  const q = { ...i, ...A };
   return q.className = "raptor", q.uniqid = Date.now(), x(() => {
     if (q.disabled) return;
     const g = ({ keyCode: I }) => {
