@@ -2,9 +2,21 @@
   "name": "react-raptorize",
   "version": "1.0.1",
   "description": "Key the secret code to see some dino-magic!",
-  "main": "index.js",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/react-raptorize.js",
+  "module": "./dist/react-raptorize.js",
+  "exports": {
+    ".": {
+      "import": "./dist/react-raptorize.js"
+    }
+  },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "vite build",
+    "dev": "vite build --watch"
   },
   "keywords": [
     "react",
@@ -20,14 +32,15 @@
     "react-dom": ">=16.8.0 <20.0.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.13.9",
-    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-react": "^7.28.5",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "vite": "^7.3.1"
   }
 }
