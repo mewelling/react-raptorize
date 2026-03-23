@@ -10,7 +10,7 @@ function App() {
 
         <section className="raptorizeWrap" aria-label="Konami code display">
           <div className="raptorizeWrap__inner">
-            <Raptorize code={true} disabled={false} sound={true} />
+            <Raptorize code={true} disabled={false} sound={true} repeat={true} />
           </div>
         </section>
       </main>

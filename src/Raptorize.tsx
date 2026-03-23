@@ -16,13 +16,28 @@ const defaults = {
   disabled: false,
 };
 
-const init = (options) => {
+interface RaptorizeProps {
+  code?: boolean;
+  disabled?: boolean;
+  repeat?: boolean;
+  sound?: boolean;
+  soundDelay?: number;
+  imagePath?: string;
+  audioPath?: string[];
+}
+
+interface RaptorizeInitOptions extends RaptorizeProps {
+  className: string;
+  uniqid: number;
+}
+
+const init = (options: RaptorizeInitOptions) => {
   const audioTemplate = document.createElement('audio');
   audioTemplate.className = options.className + '-source asset-' + options.uniqid;
 
-  for (var source in options.audioPath) {
+  for (let source of options.audioPath || []) {
     const sourceAudioTemplate = document.createElement('source');
-    sourceAudioTemplate.src = options.audioPath[source];
+    sourceAudioTemplate.src = source
     audioTemplate.appendChild(sourceAudioTemplate);
   }
 
@@ -47,15 +62,17 @@ const init = (options) => {
       image.classList.remove(options.className + '-go');
       const assets = document.getElementsByClassName('asset-' + options.uniqid);
       while (assets[0]) {
-        assets[0].parentNode.removeChild(assets[0]);
+        assets[0].parentNode?.removeChild(assets[0]);
       }
     }, 5000);
   }
 
-  return { go: go }
+  return { go }
 }
 
-const Raptorize = (props) => {
+
+
+const Raptorize = (props: RaptorizeProps) => {
   const [index, setIndex] = useState(0);
 
   /**
@@ -63,14 +80,16 @@ const Raptorize = (props) => {
    */
   ensureRaptorStyles();
 
-  const options = { ...defaults, ...props };
-  options.className = 'raptor';
-  options.uniqid = Date.now();
+  const options: RaptorizeInitOptions = { 
+    ...defaults, ...props,
+    className: 'raptor',
+    uniqid: Date.now(),
+  };
 
   useEffect(() => {
     if (options.disabled) return;
 
-    const validateKonami = ({ keyCode }) => {
+    const validateKonami = ({ keyCode }: { keyCode: number }) => {
       if (keyCode === 65 && index > 8 && options.repeat) setIndex(index + 1);
       else if (keyCode === konamiCode[index]) setIndex(index + 1);
       else setIndex(0);

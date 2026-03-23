@@ -10,12 +10,13 @@
   "module": "./dist/react-raptorize.js",
   "exports": {
     ".": {
-      "import": "./dist/react-raptorize.js"
+      "import": "./dist/react-raptorize.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
     "test": "jest",
-    "build": "vite build",
+    "build": "vite build && tsc -p tsconfig.build.json",
     "dev": "vite build --watch"
   },
   "keywords": [
@@ -36,11 +37,13 @@
     "@babel/preset-react": "^7.28.5",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.14",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "typescript": "^5.9.3",
     "vite": "^7.3.1"
   }
 }
