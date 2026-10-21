@@ -33,7 +33,6 @@ function d(e) {
 		case "B": return 66;
 		case "a":
 		case "A": return 65;
-		default: break;
 	}
 	switch (e.code) {
 		case "ArrowUp": return 38;
